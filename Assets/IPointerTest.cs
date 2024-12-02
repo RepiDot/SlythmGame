@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class IPointerTest : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IPointerDownHandler
 {
+    int i = -1;
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("StartDragHandler");
@@ -17,7 +18,13 @@ public class IPointerTest : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("ClickHandler");
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
+        Debug.Log(GameObject.FindGameObjectsWithTag("Circle").Length);
+        if(GameObject.FindGameObjectsWithTag("Circle").Length == 1) {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
+        i = GameObject.FindGameObjectsWithTag("Circle").Length;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -40,7 +47,7 @@ public class IPointerTest : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
     void Update()
     {
         if(Input.GetMouseButtonDown(0)) {
-            //Debug.Log("GetMouseButtonDown");
+            Debug.Log("GetMouseButtonDown");
         }
     }
 }
